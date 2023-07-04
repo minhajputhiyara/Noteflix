@@ -1,0 +1,18 @@
+{% extends 'classroom/base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="container">
+<div class="jumbotron">
+  {% if note_uploaded %}
+  <h1>{{ form.instance.note_name }} Note is uploaded successfully.</h1>
+  {% else %}
+  <h1>Upload Note</h1>
+  <form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" class="btn btn-danger" name="" value="Upload">
+  </form>
+  {% endif %}
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'classroom/base.html' %}
+{% block content %}
+
+<div class="container">
+  <div class="jumbotron">
+
+{% if student.student_note.count == 0 %}
+  <h2>No Notes Yet</h2>
+{% else %}
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Note Name</th>
+        <th scope="col">Uploaded By</th>
+        <th scope="col">Uploaded Date</th>
+        <th scope="col">view or Download</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for note in student.student_note.all %}
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td>{{ note.note_name }}</td>
+          <td>{{ note.teacher }}</td>
+          <td>{{ note.created_at }}</td>
+          <td><a href="{{ note.note.url }}" class="btn btn-primary" target="_blank">Download</a></td>
+    
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+</div>
+</div>
+{% endblock %}
